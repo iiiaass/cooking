@@ -1,27 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 ## サイト名
 ### cooking
 
@@ -33,7 +11,7 @@ Things you may want to cover:
 自身が料理好きで、節約ごはんを作ることが多いのですが、他の人がどのようなレシピで作っているのか、他にどのような節約術、レシピがあるのか知ることができるサービスがあれば便利だと考え、このテーマにしました。
 このアプリで記事を見てサービスを実際に利用したユーザーによって、利用後の感想やいいね機能により口コミが投稿されます。
 SNSやスマートフォンなどの普及により、多くの人が口コミを参考にし、食生活に変化が起きています。
-人気料理や料理ジャンル、作りやすさなどその都度の需要に合わせてコメントやいいね数で前もって確認しておける点が特徴です。各ユーザーの需要に合った記事が見つかります。
+人気料理や料理ジャンル、作りやすさなどその都度の需要に合わせてコメントやいいね数で前もって確認しておける点が特徴です。そのため各ユーザーの需要に合った記事が見つかります。
 口コミは会員登録したユーザーのみが投稿でき、利用者の生の声が聞けるため、利用を検討している顧客にとって有益な情報といえます。
 
 ### ターゲットユーザ
