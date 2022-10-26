@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_scope :customer do
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
    namespace :admin do
     resources :comments,only:[:index,:show,:update,:destroy]
     resources :customers,only:[:index,:show,:edit,:update,:destroy]
@@ -28,6 +32,8 @@ Rails.application.routes.draw do
     delete '/customers/:customer_id/posts/:id'=>'posts#destroy',as:'destroy'
     resources :comments,only:[:new,:edit,:create,:destroy]
     resources :nices,only:[:create,:destroy]
-   end 
+   end
+
+
 end
- 
+
