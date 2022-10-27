@@ -8,11 +8,11 @@ class Customer < ApplicationRecord
   has_many:nices,dependent: :destroy
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |customer|
+    find_or_create_by!(introduction:'reading',first_name:'user',last_name: 'guest',email: 'guests@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
-      customer.last_name="ゲスト"
-      customer.first_name="ユーザー"
-      customer.introduction="閲覧用"
+      customer.last_name="guest"
+      customer.first_name="user"
+      customer.introduction="reading"
     end
   end
 end

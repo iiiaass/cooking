@@ -3,8 +3,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+
   end
 
   def show
+  end
+
+  def search
+    @posts = Post.search(params[:search])
   end
 end

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe'=>'customers#unsubscribe'
     patch '/customers/withdraw'=>'customers#withdraw'
     resources :posts,only:[:new,:index,:show,:create]
+    get '/posts/search'=>'posts#search',as:'search'
     delete '/customers/:customer_id/posts/:id'=>'posts#destroy',as:'destroy'
     resources :comments,only:[:new,:edit,:create,:destroy]
     resources :nices,only:[:create,:destroy]
