@@ -1,21 +1,34 @@
 <%=render 'public/header' %>
 <h2>投稿一覧</h2>
 <% if params[:search] %>
-  検索結果<%=@posts.count %>件
+  検索結果<%= @posts.count %>件
 <% elsif @posts.count==0 %>
   検索結果 0件
 <% else %>
-  表示件数<%=@posts.count %>件
+
+<%sum = 0%>
+<%@posts.each do |post|%>
+  <%unless post.customer.is_deleted %>
+    <% sum = sum + 1%>
+  <%end%>
+<%end%>
+
+  表示件数<%= sum %>件<br>
 <% end %>
 
 <% @posts.each do |post| %>
+<%# 無理やり退会の人の投稿は除外してる　うまい方法考える%>
+<% unless post.customer.is_deleted %>
+  <%=image_tag post.customer.get_profile_image(50,50) %>
+  <%=post.customer.last_name %>
+  <%=post.customer.first_name %>
   <%= link_to post_path(post.id) do %>
     <%=image_tag post.get_image(100,100) %>
     <% end %>
     <p>タイトル:<%= post.title %></p>
     <p>ジャンル:<%=post.genre.name %></p>
     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
-
+  <%end%>
 <% end %>
 
 

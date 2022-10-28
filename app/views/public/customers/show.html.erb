@@ -4,7 +4,7 @@
 <%=@customer.last_name %>
 <%=@customer.first_name %>
 <p>自己紹介:<%=@customer.introduction %></p>
-<%= link_to "編集する",edit_path(@customer.id) %>
+<%= link_to "編集する",edit_customer_path(@customer.id) %>
 
 <h4>投稿した記事</h4>
 <% @posts.each do |f| %>

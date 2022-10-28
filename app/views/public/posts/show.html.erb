@@ -1,8 +1,6 @@
 <%=render 'public/header' %>
 <h2>投稿詳細</h2>
-<%= link_to show_path do %>
 <%=image_tag @customer.get_profile_image(50,50) %>
-<% end %>
 <%=@customer.last_name %>
 <%=@customer.first_name %>
 <div>

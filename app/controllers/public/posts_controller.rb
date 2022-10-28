@@ -19,13 +19,13 @@ class Public::PostsController < ApplicationController
 
   def show
    @post=Post.find(params[:id])
-   @customer=current_customer
+   @customer=@post.customer
   end
 
   def destroy
     @post=Post.find(params[:id])
     @post.destroy
-    redirect_to show_path
+    redirect_to customer_path(current_customer.id)
   end
 
   private

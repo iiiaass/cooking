@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'customer/unsubscribe'
+  end
   # 顧客用
  devise_for :customers,skip: [:passwords],controllers: {
   registrations: "public/registrations",
@@ -23,11 +26,11 @@ Rails.application.routes.draw do
 
    scope module: :public do
     root to:'homes#top'
-    get '/customers/information'=>'customers#show',as:'show'
-    get '/customers/information/edit'=>'customers#edit', as: 'edit'
-    patch '/customers/information'=>'customers#update', as: 'update'
-    get '/customers/unsubscribe'=>'customers#unsubscribe'
-    patch '/customers/withdraw'=>'customers#withdraw'
+    patch '/customers/:id/withdraw'=>'customers#withdraw',as:'withdraw'
+    resources :customers,only:[:show,:edit,:update]
+    # get '/customers/information'=>'customers#show',as:'show'
+    # get '/customers/information/edit'=>'customers#edit', as: 'edit'
+    # patch '/customers/information'=>'customers#update', as: 'update'
     resources :posts,only:[:new,:index,:show,:create]
     get '/posts/search'=>'posts#search',as:'search'
     delete '/customers/:customer_id/posts/:id'=>'posts#destroy',as:'destroy'

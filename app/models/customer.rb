@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-   has_one_attached :profile_image
+  has_one_attached :profile_image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
   has_many:comments,dependent: :destroy
   has_many:posts,dependent: :destroy
   has_many:nices,dependent: :destroy
+
+  scope :only_active, -> {where(is_deleted: false)}
+
 
   def self.guest
     find_or_create_by!(introduction:'reading',first_name:'user',last_name: 'guest',email: 'guests@example.com') do |customer|
