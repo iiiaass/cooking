@@ -11,14 +11,21 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-   @posts=Post.all
+   @posts= Post.all
+   if params[:search]
+    @posts = Post.search(params[:search])
+   end
   end
 
   def show
+   @post=Post.find(params[:id])
+   @customer=current_customer
   end
 
-  def search
-    @posts = Post.search(params[:search])
+  def destroy
+    @post=Post.find(params[:id])
+    @post.destroy
+    redirect_to show_path
   end
 
   private
