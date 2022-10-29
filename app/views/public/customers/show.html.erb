@@ -1,10 +1,13 @@
 <%=render 'public/header' %>
-<h2>マイページ</h2>
+<h2><%=@customer.last_name %>
+    <%=@customer.first_name %>さんの会員詳細</h2>
 <%=image_tag @customer.get_profile_image(50,50) %>
 <%=@customer.last_name %>
 <%=@customer.first_name %>
 <p>自己紹介:<%=@customer.introduction %></p>
+<% if @customer==current_customer %>
 <%= link_to "編集する",edit_customer_path(@customer.id) %>
+<% end %>
 
 <h4>投稿した記事</h4>
 <% @posts.each do |f| %>
