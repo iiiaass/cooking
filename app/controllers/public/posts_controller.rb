@@ -15,11 +15,14 @@ class Public::PostsController < ApplicationController
    if params[:search]
     @posts = Post.search(params[:search])
    end
+   @post=Post.new
   end
 
   def show
    @post=Post.find(params[:id])
    @customer=@post.customer
+   @comment =Comment.new
+
   end
 
   def destroy
@@ -30,6 +33,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title,:article,:image,:genre_id)
+    params.require(:post).permit(:title,:article,:image [] ,:genre_id)
   end
 end

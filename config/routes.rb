@@ -28,13 +28,10 @@ Rails.application.routes.draw do
     root to:'homes#top'
     patch '/customers/:id/withdraw'=>'customers#withdraw',as:'withdraw'
     resources :customers,only:[:show,:edit,:update]
-    # get '/customers/information'=>'customers#show',as:'show'
-    # get '/customers/information/edit'=>'customers#edit', as: 'edit'
-    # patch '/customers/information'=>'customers#update', as: 'update'
     resources :posts,only:[:new,:index,:show,:create]
     get '/posts/search'=>'posts#search',as:'search'
     delete '/customers/:customer_id/posts/:id'=>'posts#destroy',as:'destroy'
-    resources :comments,only:[:new,:edit,:create,:destroy]
+    resources :comments,only:[:create,:destroy]
     resources :nices,only:[:create,:destroy]
    end
 
