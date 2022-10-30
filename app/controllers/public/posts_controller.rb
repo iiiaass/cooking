@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
    if params[:search]
     @posts = Post.search(params[:search])
    end
-   @post=Post.new
+   # @post=Post.new
   end
 
   def show

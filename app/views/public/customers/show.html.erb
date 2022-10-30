@@ -18,6 +18,7 @@
    <p>タイトル:<%=f.title %></p>
    <p>ジャンル:<%=f.genre.name %></p>
    <p>投稿日:<%= f.created_at.strftime('%Y/%m/%d') %></p>
+   <p><%= link_to "#{f.comments.count} コメント", post_path(f.id) %></p>
    <% if @customer==current_customer %>
    <%= link_to "削除する",destroy_path(@customer.id,f.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
    <% end %>
