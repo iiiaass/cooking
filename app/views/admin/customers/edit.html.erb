@@ -1,2 +1,22 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<%=render 'admin/header' %>
+<h2>会員編集</h2>
+<%=form_with model: @customer,url:admin_customer_path(@customer.id),method: :patch do |f| %>
+<p>会員のプロフィール画像</p>
+<%=f.file_field:profile_image %>
+<p>姓</p>
+<%=f.text_field:last_name %>
+<p>名</p>
+<%=f.text_field:first_name %>
+<p>メールアドレス</p>
+<%=f.text_field:email %>
+<p>自己紹介文</p>
+<%=f.text_area:introduction, size: "40x20" %>
+<p>会員ステータス</p>
+<%= f.radio_button :is_deleted, "false" %>
+<%= f.label :is_deleted, "有効" %>
+
+<%= f.radio_button :is_deleted, "true" %>
+<%= f.label :is_deleted, "退会" %>
+<%=f.submit "変更を保存する" %>
+<% end %>
+

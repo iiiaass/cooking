@@ -2,6 +2,10 @@
   <header>
       <h2>LOGO</h2>
        <% if admin_signed_in? %>
+        <%= form_with url: admin_posts_path, method: :get do |f| %>
+         <%=f.text_field :search, :placeholder => "キーワード検索" %>
+         <%=f.submit'検索する' %>
+        <% end %>
       <li>
         <%= link_to "投稿一覧", admin_posts_path %>
       </li>
