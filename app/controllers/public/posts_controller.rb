@@ -6,14 +6,29 @@ class Public::PostsController < ApplicationController
   def create
    post=Post.new(post_params)
    post.customer_id=current_customer.id
-   post.save!
-   redirect_to posts_path
+   if post.save
+    redirect_to posts_path
+   else
+    @post = post
+    render :new
+   end
   end
 
   def index
+   @genres = Genre.all
    @posts= Post.all
    if params[:search]
     @posts = Post.search(params[:search])
+   elsif params[:genre_id]
+    genre = Genre.find(params[:genre_id])
+    @posts = genre.posts
+   end
+
+   @post_count = 0
+   @posts.each do |post|
+    unless post.customer.is_deleted
+     @post_count += 1
+    end
    end
    # @post=Post.new
   end
@@ -32,7 +47,8 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
   def post_params
-    params.require(:post).permit(:title,:article,:image [] ,:genre_id)
+    params.require(:post).permit(:title, :article, :genre_id, images: [])
   end
 end

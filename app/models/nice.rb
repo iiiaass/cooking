@@ -1,4 +1,4 @@
 class Nice < ApplicationRecord
-  belongs_to:customer
-  belongs_to:post
+  belongs_to :customer
+  belongs_to :post
 end

@@ -1,38 +1,25 @@
 <%=render 'public/header' %>
+<%=render 'public/sidebar' %>
 <h2>投稿一覧</h2>
-<% if params[:search] %>
-  検索結果<%= @posts.count %>件
-<% elsif @posts.count==0 %>
-  検索結果 0件
-<% else %>
-
-<%sum = 0%>
-<%@posts.each do |post|%>
-  <%unless post.customer.is_deleted %>
-    <% sum = sum + 1%>
-  <%end%>
-<%end%>
-
-  表示件数<%= sum %>件<br>
-<% end %>
-
+検索結果 <%= @post_count %>件
 <% @posts.each do |post| %>
-<%# 無理やり退会の人の投稿は除外してる　うまい方法考える%>
-<% unless post.customer.is_deleted %>
-  <%=image_tag post.customer.get_profile_image(50,50) %>
-  <%=post.customer.last_name %>
-  <%=post.customer.first_name %>
-  <%= link_to post_path(post.id) do %>
-    <%=image_tag post.get_image(100,100) %>
-  <% end %>
+
+  <% unless post.customer.is_deleted %>
+    <%=image_tag post.customer.get_profile_image(50, 50) %>
+    <%=post.customer.last_name %>
+    <%=post.customer.first_name %>
+    <% if post.images.attached? && post.images.first.present? %>
+      <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(100, 100) %>
+      <% end %>
+    <% end %>
     <p>タイトル:<%= post.title %></p>
     <p>ジャンル:<%=post.genre.name %></p>
     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
     <p><%= link_to "#{post.nices.count} いいね", post_path(post.id) %></p>
     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
-
   <% end %>
-  <% end %>
+<% end %>
 
 <!--投稿画面での画像複数投稿の実装-->
 

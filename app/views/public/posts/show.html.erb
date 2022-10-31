@@ -6,7 +6,11 @@
 <%=@customer.last_name %>
 <%=@customer.first_name %>
 <div>
-  <%=image_tag @post.get_image(100,100) %>
+  <% if @post.images.attached? %>
+    <% @post.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [100, 100]).processed %>
+    <% end %>
+  <% end %>
   <p>タイトル:<%=@post.title %></p>
   <p>ジャンル:<%=@post.genre.name %></p>
   <p>作り方:<%=@post.article %></p>

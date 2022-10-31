@@ -4,9 +4,10 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many:comments,dependent: :destroy
-  has_many:posts,dependent: :destroy
-  has_many:nices,dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :nices, dependent: :destroy
+  has_many :niced_posts, through: :nices, source: :post
 
   scope :only_active, -> {where(is_deleted: false)}
 

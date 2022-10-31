@@ -12,8 +12,10 @@
 
 <h4>投稿した記事</h4>
 <% @posts.each do |f| %>
-  <%= link_to post_path(f.id) do %>
-    <%=image_tag f.get_image(100,100) %>
+  <% if f.images.attached? && f.images.first.present? %>
+    <%= link_to post_path(f.id) do %>
+      <%=image_tag f.get_image(100,100) %>
+    <% end %>
   <% end %>
    <p>タイトル:<%=f.title %></p>
    <p>ジャンル:<%=f.genre.name %></p>
@@ -26,4 +28,16 @@
 <% end %>
 
 <h4>いいねした記事</h4>
+<% @customer.niced_posts.each do |post| %>
+  <% if post.images.attached? && post.images.first.present? %>
+    <%= link_to post_path(post) do %>
+      <%= image_tag post.get_image(100, 100) %>
+    <% end %>
+  <% end %>
+  <p>タイトル:<%= post.title %></p>
+  <p>ジャンル:<%= post.genre.name %></p>
+  <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
+  <p><%= link_to "#{post.nices.count} いいね", post_path(post) %></p>
+  <p><%= link_to "#{post.comments.count} コメント", post_path(post) %></p>
+<% end %>
 <!--いいねした記事の一覧＝＞投稿詳細に遷移-->
