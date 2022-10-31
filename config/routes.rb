@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   end
 
    namespace :admin do
-    resources :comments,only:[:index,:show,:update,:destroy]
     resources :customers,only:[:index,:show,:edit,:update,:destroy]
     resources :genres,only:[:index,:edit,:create,:update]
-    resources :posts,only:[:index,:show,:update,:destroy]
+    resources :posts,only:[:index,:show,:update,:destroy] do
+     resources :comments,only:[:create,:destroy]
+    end
    end
 
    scope module: :public do
@@ -31,9 +32,10 @@ Rails.application.routes.draw do
     get '/posts/search'=>'posts#search',as:'search'
     resources :posts,only:[:new,:index,:show,:create] do
       resources :comments,only:[:create,:destroy]
+      resource :nices,only:[:create,:destroy]
     end
     delete '/customers/:customer_id/posts/:id'=>'posts#destroy',as:'destroy'
-    resources :nices,only:[:create,:destroy]
+    
    end
 
 

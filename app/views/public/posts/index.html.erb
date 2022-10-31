@@ -23,21 +23,17 @@
   <%=post.customer.last_name %>
   <%=post.customer.first_name %>
   <%= link_to post_path(post.id) do %>
-    <%# if @post.image.attached? %>
-      <%# @post.image.each do |image| %>
-      <%#= image_tag image.variant(resize: '500x500') %>
-      <%# end %>
-    <%#end %>
     <%=image_tag post.get_image(100,100) %>
   <% end %>
     <p>タイトル:<%= post.title %></p>
     <p>ジャンル:<%=post.genre.name %></p>
     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
+    <p><%= link_to "#{post.nices.count} いいね", post_path(post.id) %></p>
     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+
   <% end %>
   <% end %>
 
-<!--コメント削除機能-->
 <!--投稿画面での画像複数投稿の実装-->
 
 

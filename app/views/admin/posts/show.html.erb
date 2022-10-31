@@ -12,3 +12,14 @@
   <p>作り方:<%=@post.article %></p>
 </div>
 
+<div>
+  <% @post.comments.each do |comment| %>
+    <p><%= image_tag comment.customer.get_profile_image(30,30) %></p>
+    <%= comment.customer.last_name %>
+    <%= comment.customer.first_name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <%=comment.body %>
+    <%= link_to "削除", admin_post_comment_path(comment.post_id, comment.id), method: :delete %>
+  <% end %>
+</div>
+

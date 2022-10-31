@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   belongs_to:customer
   belongs_to:genre
 
+  def niced_by?(customer)
+    nices.exists?(customer_id: customer.id)
+  end
+
   def self.search(search)
     return Post.all unless search
     Post.where(['title LIKE (?) OR article LIKE (?)',"%#{search}%", "%#{search}%"])
