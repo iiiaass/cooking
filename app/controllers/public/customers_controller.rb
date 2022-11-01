@@ -1,7 +1,8 @@
 class Public::CustomersController < ApplicationController
   def show
+    @genres = Genre.all
     @customer=Customer.find(params[:id])
-    @posts=@customer.posts
+    @posts=@customer.posts.order(created_at: :desc)
   end
 
   def edit

@@ -1,14 +1,14 @@
 <%=render 'public/header' %>
-<%=render 'public/sidebar' %>
+<%=render 'public/sidebar', genres: @genres %>
 <h2>投稿一覧</h2>
-検索結果 <%= @post_count %>件
+検索結果 <%= @post_count %>件<br>
 <% @posts.each do |post| %>
 
   <% unless post.customer.is_deleted %>
     <%=image_tag post.customer.get_profile_image(50, 50) %>
     <%=post.customer.last_name %>
     <%=post.customer.first_name %>
-    <% if post.images.attached? && post.images.first.present? %>
+     <% if post.images.attached? && post.images.first.present? %>
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(100, 100) %>
       <% end %>
@@ -20,8 +20,6 @@
     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
   <% end %>
 <% end %>
-
-<!--投稿画面での画像複数投稿の実装-->
 
 
 
