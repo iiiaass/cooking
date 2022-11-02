@@ -1,11 +1,13 @@
 class Public::PostsController < ApplicationController
   def new
-   @post=Post.new
+   @post = Post.new
+   @genres = Genre.all
   end
 
   def create
-   post=Post.new(post_params)
-   post.customer_id=current_customer.id
+   @genres = Genre.all
+   post = Post.new(post_params)
+   post.customer_id = current_customer.id
    if post.save
     redirect_to posts_path
    else
@@ -16,7 +18,7 @@ class Public::PostsController < ApplicationController
 
   def index
    @genres = Genre.all
-   @posts= Post.all.order(created_at: :desc)
+   @posts = Post.all.order(created_at: :desc)
    if params[:search]
     @posts = Post.search(params[:search])
    elsif params[:genre_id]
@@ -34,14 +36,14 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-   @post=Post.find(params[:id])
-   @customer=@post.customer
-   @comment =Comment.new
+   @post = Post.find(params[:id])
+   @customer = @post.customer
+   @comment = Comment.new
 
   end
 
   def destroy
-    @post=Post.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to customer_path(current_customer.id)
   end

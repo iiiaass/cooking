@@ -1,5 +1,5 @@
 <%=render 'public/header' %>
-<h2>投稿詳細</h2>
+<h2>レシピの詳細</h2>
 <%= link_to customer_path(@customer.id) do %>
 <%=image_tag @customer.get_profile_image(50,50) %>
 <% end %>
@@ -16,28 +16,31 @@
   <p>作り方:<%=@post.article %></p>
 </div>
 
- <% if @post.niced_by?(current_customer) %>
-    <p>
-      <%= link_to  post_nices_path(@post.id), method: :delete do %>
-        ♥<%= @post.nices.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to  post_nices_path(@post.id), method: :post do %>
-        ♡<%= @post.nices.count %> いいね
-      <% end %>
-    </p>
+  <% if current_customer.email != 'guests@example.com' %>
+   <% if @post.niced_by?(current_customer) %>
+      <p>
+        <%= link_to  post_nices_path(@post.id), method: :delete do %>
+          ♥<%= @post.nices.count %> いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to  post_nices_path(@post.id), method: :post do %>
+          ♡<%= @post.nices.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
   <% end %>
 
-
- <div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <%= form_with model: [@post, @comment], url:post_comments_path(@post.id) do |f| %>
-    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
+  <div>
+   <p>コメント件数：<%= @post.comments.count %></p>
+    <% if current_customer.email != 'guests@example.com' %>
+      <%= form_with model: [@post, @comment], url:post_comments_path(@post.id) do |f| %>
+        <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    <% end %>
+  </div>
 
 <div>
   <% @post.comments.each do |comment| %>

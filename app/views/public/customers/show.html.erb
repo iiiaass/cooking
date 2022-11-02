@@ -8,42 +8,45 @@
 <%=@customer.last_name %>
 <%=@customer.first_name %>
 
- <% if current_customer != @customer %>
-  <% if current_customer.following?(@customer) %>
-    <%= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete %>
-  <% else %>
-    <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post %>
+  <% if current_customer.email != 'guests@example.com' %>
+   <% if current_customer != @customer %>
+    <% if current_customer.following?(@customer) %>
+      <%= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post %>
+    <% end %>
   <% end %>
-<% end %>
-  
-  <%= link_to "フォロー一覧", customer_followings_path(@customer.id) %>
-  <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id) %>
 
+    <%= link_to "フォロー一覧", customer_followings_path(@customer.id) %>
+    <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id) %>
+  <% end %>
 <p>自己紹介:<%=@customer.introduction %></p>
 
 
-  
+
 <% if @customer==current_customer %>
 <p>メールアドレス:<%=@customer.email %></p>
 <%= link_to "編集する",edit_customer_path(@customer.id) %>
 <% end %>
 
-<h4>投稿した記事</h4>
-<% @posts.each do |f| %>
-  <% if f.images.attached? && f.images.first.present? %>
-    <%= link_to post_path(f.id) do %>
-      <%=image_tag f.get_image(100,100) %>
+  <h4>投稿した記事</h4>
+  <% @posts.each do |f| %>
+    <% if f.images.attached? && f.images.first.present? %>
+      <%= link_to post_path(f.id) do %>
+        <%=image_tag f.get_image(100,100) %>
+      <% end %>
     <% end %>
+     <p>タイトル:<%=f.title %></p>
+     <p>ジャンル:<%=f.genre.name %></p>
+     <p>投稿日:<%= f.created_at.strftime('%Y/%m/%d') %></p>
+
+     <p><%= link_to "#{f.nices.count} いいね", post_path(f.id) %></p>
+     <p><%= link_to "#{f.comments.count} コメント", post_path(f.id) %></p>
+    <% end %>
+     <% if @customer==current_customer %>
+     <%= link_to "削除する",destroy_path(@customer.id,f.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
+
   <% end %>
-   <p>タイトル:<%=f.title %></p>
-   <p>ジャンル:<%=f.genre.name %></p>
-   <p>投稿日:<%= f.created_at.strftime('%Y/%m/%d') %></p>
-   <p><%= link_to "#{f.nices.count} いいね", post_path(f.id) %></p>
-   <p><%= link_to "#{f.comments.count} コメント", post_path(f.id) %></p>
-   <% if @customer==current_customer %>
-   <%= link_to "削除する",destroy_path(@customer.id,f.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
-   <% end %>
-<% end %>
 
 <h4>いいねした記事</h4>
 <% @customer.niced_posts.each do |post| %>
