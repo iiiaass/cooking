@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
 
   def index
    @genres = Genre.all
-   @posts = Post.all.order(created_at: :desc)
+   @posts = Post.page(params[:page]).order(created_at: :desc)
    if params[:search]
     @posts = Post.search(params[:search])
    elsif params[:genre_id]
