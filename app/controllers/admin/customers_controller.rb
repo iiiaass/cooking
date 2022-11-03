@@ -1,28 +1,32 @@
 class Admin::CustomersController < ApplicationController
   def index
     @genres = Genre.all
-    @customers=Customer.all
+    @customers = Customer.all
   end
 
   def edit
     @genres = Genre.all
-    @customer=Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer=Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to admin_customer_path(@customer.id)
+    @genres = Genre.all
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+     redirect_to admin_customer_path(@customer.id)
+    else
+     render:edit
+    end
   end
 
   def show
     @genres = Genre.all
-    @customer=Customer.find(params[:id])
-    @posts=@customer.posts.order(created_at: :desc)
-    if @customer.is_deleted==true
-      @status="退会"
+    @customer = Customer.find(params[:id])
+    @posts = @customer.posts.order(created_at: :desc)
+    if @customer.is_deleted == true
+      @status = "退会"
     else
-      @status="有効"
+      @status = "有効"
     end
   end
 

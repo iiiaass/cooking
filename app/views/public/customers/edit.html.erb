@@ -1,17 +1,27 @@
 <%=render 'public/header' %>
-<h2>プロフィール編集</h2>
-<%=form_with model: @customer,url:customer_path(@customer.id),method: :patch do |f| %>
-<p>プロフィール画像</p>
-<%=f.file_field:profile_image %>
-<p>姓</p>
-<%=f.text_field:last_name %>
-<p>名</p>
-<%=f.text_field:first_name %>
-<p>メールアドレス</p>
-<%=f.text_field:email %>
-<p>自己紹介文</p>
-<%=f.text_area:introduction, size: "40x20" %>
-<%=f.submit "変更を保存する" %>
-<%= link_to "退会する",withdraw_path(@customer.id) ,method: :patch,data: { confirm: '退会すると、会員登録情報やこれまでの投稿履歴が閲覧できなくなります。本当に退会しますか？' } %>
-<% end %>
+<%=render 'public/sidebar', genres: @genres %>
+
+  <% if @customer.errors.any? %>
+    <%= @customer.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+    <h2>プロフィール編集</h2>
+    <%=form_with model: @customer,url:customer_path(@customer.id),method: :patch do |f| %>
+      <p>プロフィール画像</p>
+      <%=f.file_field:profile_image %>
+      <p>姓</p>
+      <%=f.text_field:last_name %>
+      <p>名</p>
+      <%=f.text_field:first_name %>
+      <p>メールアドレス</p>
+      <%=f.text_field:email %>
+      <p>自己紹介文</p>
+      <%=f.text_area:introduction, size: "40x20" %>
+      <%=f.submit "変更を保存する" %>
+      <%= link_to "退会する",withdraw_path(@customer.id) ,method: :patch,data: { confirm: '退会すると、会員登録情報やこれまでの投稿履歴が閲覧できなくなります。本当に退会しますか？' } %>
+    <% end %>
 

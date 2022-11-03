@@ -15,11 +15,15 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   scope :only_active, -> {where(is_deleted: false)}
-  
+
+  validates :last_name,presence:true
+  validates :first_name, presence: true
+  validates :email, presence: true
+
   def follow(customer_id)
     relationships.create(followed_id: customer_id)
   end
-  
+
   def unfollow(customer_id)
    relationships.find_by(followed_id: customer_id).destroy
   end
