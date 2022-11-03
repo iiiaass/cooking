@@ -2,12 +2,12 @@ class Admin::PostsController < ApplicationController
 
   def index
     @genres = Genre.all
-    @posts=Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc)
     if params[:search]
     @posts = Post.search(params[:search])
     elsif params[:genre_id]
      genre =Genre.find(params[:genre_id])
-     @posts =genre.postrs
+     @posts =genre.posts
     end
 
     @post_count = 0
@@ -19,13 +19,14 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
-   @post=Post.find(params[:id])
-   @customer=@post.customer
+   @genres = Genre.all
+   @post = Post.find(params[:id])
+   @customer = @post.customer
   end
 
   def destroy
-   @post=Post.find(params[:id])
-   @customer=@post.customer
+   @post = Post.find(params[:id])
+   @customer = @post.customer
    @post.destroy
    redirect_to admin_customer_path(@customer.id)
   end

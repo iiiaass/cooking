@@ -36,6 +36,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+   @genres = Genre.all
    @post = Post.find(params[:id])
    @customer = @post.customer
    @comment = Comment.new

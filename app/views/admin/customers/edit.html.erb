@@ -1,4 +1,5 @@
 <%=render 'admin/header' %>
+<%=render 'admin/sidebar', genres: @genres %>
 <h2>会員編集</h2>
 <%=form_with model: @customer,url:admin_customer_path(@customer.id),method: :patch do |f| %>
 <p>会員のプロフィール画像</p>

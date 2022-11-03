@@ -1,4 +1,5 @@
 <%=render 'admin/header' %>
+<%=render 'admin/sidebar',genres: @genres %>
 
 <h2>ジャンル一覧・追加</h2>
 <%=form_with model: @genre, url: admin_genres_path do |f| %>
@@ -10,5 +11,6 @@
 <p>登録されたジャンル</p>
 <% @genres.each do |genre| %>
 <%=genre.name %>
-<%= link_to '編集', edit_admin_genre_path(genre.id) %><br>
+<%= link_to '編集', edit_admin_genre_path(genre.id) %>
+<%= link_to '削除', admin_genre_path(genre.id) ,method: :delete %><br>
 <% end %>

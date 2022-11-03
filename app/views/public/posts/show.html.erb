@@ -1,4 +1,6 @@
 <%=render 'public/header' %>
+<%=render 'public/sidebar', genres: @genres %>
+
 <h2>レシピの詳細</h2>
 <%= link_to customer_path(@customer.id) do %>
 <%=image_tag @customer.get_profile_image(50,50) %>

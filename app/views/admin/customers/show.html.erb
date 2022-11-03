@@ -1,4 +1,6 @@
 <%=render 'admin/header' %>
+<%=render 'admin/sidebar', genres: @genres %>
+
 <h2><%=@customer.last_name %>
     <%=@customer.first_name %>さんの会員詳細</h2>
 <%=image_tag @customer.get_profile_image(50,50) %>

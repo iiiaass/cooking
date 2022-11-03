@@ -1,6 +1,6 @@
 <h4>ジャンルから探す</h4>
 <% genres.each do |genre| %>
   <li>
-    <%= link_to genre.name, posts_path(genre_id: genre.id) %>
+    <%= link_to genre.name, admin_posts_path(genre_id: genre.id) %>
   </li>
 <% end %>

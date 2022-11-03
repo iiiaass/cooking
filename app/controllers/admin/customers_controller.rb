@@ -1,9 +1,11 @@
 class Admin::CustomersController < ApplicationController
   def index
+    @genres = Genre.all
     @customers=Customer.all
   end
 
   def edit
+    @genres = Genre.all
     @customer=Customer.find(params[:id])
   end
 
@@ -14,6 +16,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
     @customer=Customer.find(params[:id])
     @posts=@customer.posts.order(created_at: :desc)
     if @customer.is_deleted==true

@@ -1,12 +1,14 @@
 <%=render 'public/header' %>
 <%=render 'public/sidebar', genres: @genres %>
 
-<h2><%=@customer.last_name %>
-    <%=@customer.first_name %>さんの会員詳細</h2>
+ <h2>
+  <%=@customer.last_name %>
+    <%=@customer.first_name %>さんの会員詳細
+ </h2>
 
-<%=image_tag @customer.get_profile_image(50,50) %>
-<%=@customer.last_name %>
-<%=@customer.first_name %>
+    <%=image_tag @customer.get_profile_image(50,50) %>
+    <%=@customer.last_name %>
+    <%=@customer.first_name %>
 
   <% if current_customer.email != 'guests@example.com' %>
    <% if current_customer != @customer %>
@@ -29,7 +31,7 @@
 <%= link_to "編集する",edit_customer_path(@customer.id) %>
 <% end %>
 
-  <h4>投稿した記事</h4>
+  <h4>投稿したレシピ</h4>
   <% @posts.each do |f| %>
     <% if f.images.attached? && f.images.first.present? %>
       <%= link_to post_path(f.id) do %>
@@ -42,23 +44,23 @@
 
      <p><%= link_to "#{f.nices.count} いいね", post_path(f.id) %></p>
      <p><%= link_to "#{f.comments.count} コメント", post_path(f.id) %></p>
-    <% end %>
+
      <% if @customer==current_customer %>
      <%= link_to "削除する",destroy_path(@customer.id,f.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
-
+     <% end %>
   <% end %>
 
-<h4>いいねした記事</h4>
+<h4>いいねしたレシピ</h4>
 <% @customer.niced_posts.each do |post| %>
   <% if post.images.attached? && post.images.first.present? %>
     <%= link_to post_path(post) do %>
       <%= image_tag post.get_image(100, 100) %>
     <% end %>
   <% end %>
-  <p>タイトル:<%= post.title %></p>
-  <p>ジャンル:<%= post.genre.name %></p>
-  <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
-  <p><%= link_to "#{post.nices.count} いいね", post_path(post) %></p>
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post) %></p>
+    <p>タイトル:<%= post.title %></p>
+    <p>ジャンル:<%= post.genre.name %></p>
+    <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
+    <p><%= link_to "#{post.nices.count} いいね", post_path(post) %></p>
+    <p><%= link_to "#{post.comments.count} コメント", post_path(post) %></p>
 <% end %>
-<!--いいねした記事の一覧＝＞投稿詳細に遷移-->
+

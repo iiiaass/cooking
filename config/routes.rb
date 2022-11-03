@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
    namespace :admin do
     resources :customers,only:[:index,:show,:edit,:update,:destroy]
-    resources :genres,only:[:index,:edit,:create,:update]
+    resources :genres,only:[:index,:edit,:create,:update,:destroy]
     resources :posts,only:[:index,:show,:update,:destroy] do
      resources :comments,only:[:create,:destroy]
     end

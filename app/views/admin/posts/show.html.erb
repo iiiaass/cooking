@@ -1,4 +1,5 @@
 <%=render 'admin/header' %>
+<%=render 'admin/sidebar', genres: @genres %>
 <h2>投稿詳細</h2>
 <%= link_to admin_customer_path(@customer.id) do %>
 <%=image_tag @customer.get_profile_image(50,50) %>
@@ -13,6 +14,7 @@
   <% end %>
   <p>タイトル:<%=@post.title %></p>
   <p>ジャンル:<%=@post.genre.name %></p>
+  <p><%= @post.nices.count %>いいね</p>
   <p>作り方:<%=@post.article %></p>
 </div>
 
