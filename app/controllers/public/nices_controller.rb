@@ -1,5 +1,5 @@
 class Public::NicesController < ApplicationController
-
+  
   def create
     post = Post.find(params[:post_id])
     nice = current_customer.nices.new(post_id: post.id)

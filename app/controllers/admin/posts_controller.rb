@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-
+  before_action :authenticate_admin!
   def index
     @genres = Genre.all
     @posts = Post.all.order(created_at: :desc)
@@ -9,13 +9,14 @@ class Admin::PostsController < ApplicationController
      genre =Genre.find(params[:genre_id])
      @posts =genre.posts
     end
-
-    @post_count = 0
-    @posts. each do |post|
-      unless post.customer.is_deleted
-        @post_count += 1
-      end
-    end
+    @post_count=@posts.count
+    @posts=@posts.page(params[:page]).order(created_at: :desc)
+    # @post_count = 0
+    # @posts. each do |post|
+    #   unless post.customer.is_deleted
+    #     @post_count += 1
+    #   end
+    # end
   end
 
   def show

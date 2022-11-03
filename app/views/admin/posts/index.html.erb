@@ -5,22 +5,26 @@
 検索結果 <%= @post_count %>件<br>
 <% @posts.each do |post| %>
 
-<% unless post.customer.is_deleted %>
   <%=image_tag post.customer.get_profile_image(50,50) %>
-  <%=post.customer.last_name %>
-  <%=post.customer.first_name %>
-  <% if post.images.attached? && post.images.first.present? %>
-    <%= link_to admin_post_path(post.id) do %>
-      <%=image_tag post.get_image(100,100) %>
-      <% end %>
+  <% if post.customer.is_deleted == true %>
+    退会したユーザー
+  <% end %>
+    <%=post.customer.last_name %>
+    <%=post.customer.first_name %>
+    <% if post.images.attached? && post.images.first.present? %>
+      <%= link_to admin_post_path(post.id) do %>
+        <%=image_tag post.get_image(100,100) %>
+        <% end %>
   <% end %>
     <p>タイトル:<%= post.title %></p>
     <p>ジャンル:<%=post.genre.name %></p>
     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
     <p><%= link_to "#{post.nices.count} いいね", admin_post_path(post.id) %></p>
     <p><%= link_to "#{post.comments.count} コメント", admin_post_path(post.id) %></p>
-  <% end %>
+
 <% end %>
+
+ <%= paginate @posts %>
 
 
 

@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!
   def create
     @genres = Genre.all
     @post = Post.find(params[:post_id])

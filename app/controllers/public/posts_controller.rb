@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!
   def new
    @post = Post.new
    @genres = Genre.all
@@ -18,20 +19,21 @@ class Public::PostsController < ApplicationController
 
   def index
    @genres = Genre.all
-   @posts = Post.page(params[:page]).order(created_at: :desc)
+   @posts = Post.joins(:customer).where(customer: {is_deleted: false})
    if params[:search]
-    @posts = Post.search(params[:search])
+    @posts = Post.joins(:customer).where(customer: {is_deleted: false}).search(params[:search])
    elsif params[:genre_id]
     genre = Genre.find(params[:genre_id])
-    @posts = genre.posts
+    @posts = genre.posts.joins(:customer).where(customer: {is_deleted: false})
    end
-
-   @post_count = 0
-   @posts.each do |post|
-    unless post.customer.is_deleted
-     @post_count += 1
-    end
-   end
+   @post_count=@posts.count
+   @posts=@posts.page(params[:page]).order(created_at: :desc)
+   # @post_count = 0
+   # @posts.each do |post|
+   #  unless post.customer.is_deleted
+   #   @post_count += 1
+   #  end
+   # end
 
   end
 
