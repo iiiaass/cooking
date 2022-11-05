@@ -71,6 +71,6 @@
             <% end %>
         </div>
         <br>
-        <%= link_to "退会する",withdraw_path(@customer.id) ,method: :patch,data: { confirm: '退会すると、会員登録情報やこれまでの投稿履歴が閲覧できなくなります。本当に退会しますか？' } %>
+        <%= link_to "退会する",withdraw_path(@customer.id) ,method: :patch,data: { confirm: '退会すると、会員登録情報やこれまでの投稿履歴が閲覧できなくなります。本当に退会しますか？' },class:"btn btn-outline-primary" %>
    </div>
 
