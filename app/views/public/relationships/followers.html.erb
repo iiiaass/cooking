@@ -1,3 +1,10 @@
-<%=render 'public/header' %>
-<%=render 'public/sidebar', genres: @genres %>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-12">
+    <%=render 'public/header' %>
+    </div>
+  </div>
+  <div class="col-3">
+      <%=render 'public/sidebar', genres: @genres %>
+   </div>
 <%=render 'public/relationships/follow',customers: @customers %>

@@ -16,7 +16,7 @@
               <div class="card">
                 <% if post.images.attached? && post.images.first.present? %>
                   <%= link_to post_path(post.id) do %>
-                    <%= image_tag post.get_image(100, 100), class: "card-img-top", size: "150x150" %>
+                    <%= image_tag post.get_image(300,300), class: "card-img-top", size: "150x150" %>
                   <% end %>
                 <% end %>
                 <div class="card-body">
@@ -30,7 +30,7 @@
                   <div class="card-text">
                     <!--<p>ジャンル:<%#=post.genre.name %></p>-->
                     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
-                    
+                    <p><%= link_to "#{post.nices.count} いいね", post_path(post.id) %></p>
                     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
                   </div>
                 </div>
@@ -40,7 +40,7 @@
         </div>
         <%= paginate @posts %>
       </div>
-    <div class="col-3">
+      <div class="col-3">
       <%=render 'public/sidebar', genres: @genres %>
     </div>
   </div>
