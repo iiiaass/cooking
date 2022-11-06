@@ -12,8 +12,8 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <% if customer_signed_in? %>
     <ul class="navbar-nav mr-auto">
+    <% if customer_signed_in? %>
       <% if current_customer.email != 'guests@example.com' %>
       <li class="nav-item active">
         <%= link_to "マイページ", customer_path(current_customer.id),class:"nav-link" %>
