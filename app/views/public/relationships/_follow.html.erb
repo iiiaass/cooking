@@ -1,16 +1,19 @@
 
 <% if customers.exists? %>
   <% customers.each do |customer| %>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>名前</th>
-          <th></th>
-          <th></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>
+            <%= image_tag customer.get_profile_image(50, 50) %>
+          </td>
           <td>
             <%= link_to customer_path(customer.id) do %>
             <%= customer.last_name %><%= customer.first_name %>
@@ -33,3 +36,5 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+
+
