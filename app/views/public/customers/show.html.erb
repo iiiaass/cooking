@@ -24,17 +24,16 @@
           <% end %>
         <% end %>
 
-          <%= link_to "フォロー一覧", customer_followings_path(@customer.id),class:"btn btn-outline-primary" %>
-          <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id),class:"btn btn-outline-primary" %>
+          <%= link_to "フォロー一覧", customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
+          <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
         <% end %>
-      <p>自己紹介:<%=@customer.introduction %></p>
+        <% if @customer==current_customer %>
+        <p>メールアドレス:<%=@customer.email %></p>
+        <%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary" %>
+        <% end %>
+      <p>自己紹介<br>
+      <%=@customer.introduction %></p>
 
-
-
-      <% if @customer==current_customer %>
-      <p>メールアドレス:<%=@customer.email %></p>
-      <%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary" %>
-      <% end %>
         <ul class="nav nav-tabs nav-fill">
           <li class="nav-item">
             <%= link_to "投稿したレシピ",customer_path(@customer) ,class:"nav-link #{@nice.present? ? '' : 'active'}" %>
