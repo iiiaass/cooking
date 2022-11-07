@@ -34,7 +34,7 @@
       <p>自己紹介<br>
       <%=@customer.introduction %></p>
 
-        <ul class="nav nav-tabs nav-fill">
+        <ul class="nav nav-tabs nav-fill mb-4">
           <li class="nav-item">
             <%= link_to "投稿したレシピ",customer_path(@customer) ,class:"nav-link #{@nice.present? ? '' : 'active'}" %>
           </li>
@@ -48,7 +48,7 @@
               <div class="row">
                 <% @posts.each do |f| %>
                 <div class="col-4">
-                  <div class="card">
+                  <div class="card mb-4">
                     <% if f.images.attached? && f.images.first.present? %>
                       <%= link_to post_path(f.id) do %>
                         <%=image_tag f.get_image(300,300), class: "card-img-top", size: "150x150"%>

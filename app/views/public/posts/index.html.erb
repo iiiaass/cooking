@@ -13,7 +13,7 @@
         <div class="row">
           <% @posts.each do |post| %>
             <div class="col-4">
-              <div class="card">
+              <div class="card mb-4">
                 <% if post.images.attached? && post.images.first.present? %>
                   <%= link_to post_path(post.id) do %>
                     <%= image_tag post.get_image(300,300), class: "card-img-top", size: "150x150" %>
