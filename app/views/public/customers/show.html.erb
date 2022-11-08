@@ -22,17 +22,17 @@
           <% else %>
             <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post,class:"btn btn-outline-primary" %>
           <% end %>
-        <% end %>
+         <% end %>
 
           <%= link_to "フォロー一覧", customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
           <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
         <% end %>
         <% if @customer==current_customer %>
-        <p>メールアドレス:<%=@customer.email %></p>
-        <%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary" %>
+          <div class="text-right"><%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary " %></div>
+          <p>メールアドレス:<%=@customer.email %></p>
         <% end %>
-      <p>自己紹介<br>
-      <%=@customer.introduction %></p>
+        <p>自己紹介<br>
+        <%=@customer.introduction %></p>
 
         <ul class="nav nav-tabs nav-fill mb-4">
           <li class="nav-item">
@@ -46,22 +46,25 @@
           <div class="row">
             <div class="col-12">
               <div class="row">
-                <% @posts.each do |f| %>
+                <% @posts.each do |post| %>
                 <div class="col-4">
                   <div class="card mb-4">
-                    <% if f.images.attached? && f.images.first.present? %>
-                      <%= link_to post_path(f.id) do %>
-                        <%=image_tag f.get_image(300,300), class: "card-img-top", size: "150x150"%>
+                    <% if post.images.attached? && post.images.first.present? %>
+                      <%= link_to post_path(post.id) do %>
+                        <%=image_tag post.get_image(300,300), class: "card-img-top", size: "150x150"%>
                       <% end %>
                     <% end %>
                     <div class="card-body">
-                     <h5 class="card-title"><%=f.title %></h5>
+                     <h5 class="card-title"><%=post.title %></h5>
                      <div class="card-text">
-                       <p><%= f.created_at.strftime('%Y/%m/%d') %></p>
-                       <p><%= link_to "#{f.nices.count} いいね", post_path(f.id) %></p>
-                       <p><%= link_to "#{f.comments.count} コメント", post_path(f.id) %></p>
+
+                       <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                       <p><%=post.customer.last_name %>
+                       <%=post.customer.first_name %></p>
+                       <p><%= link_to "#{post.nices.count} いいね", post_path(post.id) %></p>
+                       <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
                        <% if @customer==current_customer %>
-                       <%= link_to "削除する",destroy_path(@customer.id,f.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
+                       <%= link_to "削除する",destroy_path(@customer.id,post.id) ,method: :delete , data: {confirm: "本当に削除しますか？"} %>
                        <% end %>
                      </div>
                     </div>
