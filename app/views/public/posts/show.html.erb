@@ -4,15 +4,15 @@
     <%=render 'public/header' %>
     </div>
   </div>
-<%#=render 'public/sidebar', genres: @genres %>
+
     <div class="row">
       <div class="col-9">
         <h2>レシピの詳細</h2>
          <%= link_to customer_path(@customer.id) do %>
           <%=image_tag @customer.get_profile_image(50,50) %>
-          <% end %>
           <%=@customer.last_name %>
           <%=@customer.first_name %>
+         <% end %>
             <div class="row">
               <div class="col-8">
                 <% if @post.images.attached? %>

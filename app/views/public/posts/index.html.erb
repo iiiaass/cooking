@@ -21,11 +21,12 @@
                 <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title %></h5>
-                  <%=image_tag post.customer.get_profile_image(50, 50) %>
-
-                  <p class="card-text">
+                  <%= link_to post_path(post.id) do %>
+                    <%=image_tag post.customer.get_profile_image(50, 50) %>
+                    <p class="card-text">
                     <%=post.customer.last_name %>
                     <%=post.customer.first_name %>
+                  <% end %>
                   </p>
                   <div class="card-text">
                     <!--<p>ジャンル:<%#=post.genre.name %></p>-->

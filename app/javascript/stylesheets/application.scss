@@ -10,3 +10,16 @@
   object-fit:cover;
   height:500px;
 }
+
+.top-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.top-but{
+  margin-right:30px;
+}
+.nav-header{
+  margin-bottom:20px;
+  border-bottom: thin black solid;
+}

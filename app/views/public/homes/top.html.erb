@@ -1,9 +1,17 @@
 <div class="container" >
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 top-container">
     <%=render 'public/header' %>
     </div>
   </div>
 
-<h2>LOGO</h2>
-
+  <div class="row top-row">
+   <%= image_tag "logo.jpg",class:"d-inline-block align-top top-logo "%><br>
+  </div>
+  <div class="row top-row">
+  <h5>~オリジナルレシピを投稿したり、料理の幅を広げてみませんか？~</h5>
+  </div>
+  <div class="row top-row">
+    <%= link_to "新規登録", new_customer_registration_path,class:"btn btn-outline-primary btn-lg top-but" %>
+    <%= link_to "ログイン",new_customer_session_path,class:"btn btn-outline-primary btn-lg " %>
+  </div>
