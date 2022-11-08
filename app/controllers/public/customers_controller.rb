@@ -3,6 +3,7 @@ class Public::CustomersController < ApplicationController
   def show
     @genres = Genre.all
     @customer = Customer.find(params[:id])
+
     @nice =params[:nice]
     if @nice.present?
       @posts = @customer.niced_posts.order(created_at: :desc)

@@ -1,49 +1,50 @@
 
  <header>
-     <nav class="navbar navbar-light ">
-     <a class="navbar-brand" href="#">
-      <%= image_tag "logo.jpg",class:"d-inline-block align-top main-logo"%>
-    <span class="logo-title">cooking</span>
-    </a>
+    <nav class="navbar navbar-light ">
+      <a class="navbar-brand" href="#">
+        <%= image_tag "logo.jpg",class:"d-inline-block align-top main-logo"%>
+        <span class="logo-title">cooking</span>
+      </a>
     </nav>
-<nav class="navbar navbar-expand-lg navbar-light nav-header">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar navbar-expand-lg navbar-light nav-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    <% if customer_signed_in? %>
-      <% if current_customer.email != 'guests@example.com' %>
-      <li class="nav-item active">
-        <%= link_to "マイページ", customer_path(current_customer.id),class:"nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "投稿する", new_post_path,class:"nav-link" %>
-      </li>
-      <% end %>
-       <li class="nav-item">
-        <%= link_to "レシピ一覧", posts_path,class:"nav-link" %>
-      </li>
-       <li class="nav-item">
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:"nav-link" %>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <%= link_to "新規登録", new_customer_registration_path,class:"nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログイン",new_customer_session_path,class:"nav-link" %>
-      </li>
-    </ul>
-    <% end %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if customer_signed_in? %>
+              <% if current_customer.email != 'guests@example.com' %>
+                <li class="nav-item active">
+                  <%= link_to "マイページ", customer_path(current_customer.id),class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "投稿する", new_post_path,class:"nav-link" %>
+                </li>
+              <% end %>
+                <li class="nav-item">
+                  <%= link_to "レシピ一覧", posts_path,class:"nav-link" %>
+                </li>
+                 <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:"nav-link" %>
+                </li>
+                <% else %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_customer_registration_path,class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン",new_customer_session_path,class:"nav-link" %>
+                </li>
+            <% end %>
+          </ul>
 
-    <%= form_with url: posts_path, method: :get,class:"form-inline my-2 my-lg-0" do |f| %>
+
+          <%= form_with url: posts_path, method: :get,class:"form-inline my-2 my-lg-0" do |f| %>
              <%=f.text_field :search, :placeholder => "キーワード検索",class:"form-control mr-sm-2" %>
              <%=f.submit'検索する',class:"btn btn-outline-success my-2 my-sm-0" %>
-    <% end %>
+          <% end %>
 
-  </div>
-</nav>
+        </div>
+    </nav>
 </header>
 

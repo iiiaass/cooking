@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'nices/create'
+  end
   namespace :public do
     get 'relationships/create'
     get 'relationships/destroy'

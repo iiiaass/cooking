@@ -1,31 +1,82 @@
-<%=render 'admin/header' %>
-<%=render 'admin/sidebar', genres: @genres %>
-<h2>投稿詳細</h2>
-<%= link_to admin_customer_path(@customer.id) do %>
-<%=image_tag @customer.get_profile_image(50,50) %>
-<% end %>
-<%=@customer.last_name %>
-<%=@customer.first_name %>
-<div>
-  <% if @post.images.attached? %>
-    <% @post.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_limit: [100, 100]).processed %>
-    <% end %>
-  <% end %>
-  <p>タイトル:<%=@post.title %></p>
-  <p>ジャンル:<%=@post.genre.name %></p>
-  <p><%= @post.nices.count %>いいね</p>
-  <p>作り方:<%=@post.article %></p>
-</div>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-12">
+    <%=render 'admin/header' %>
+    </div>
+  </div>
 
-<div>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag comment.customer.get_profile_image(30,30) %></p>
-    <%= comment.customer.last_name %>
-    <%= comment.customer.first_name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <%=comment.body %>
-    <%= link_to "削除", admin_post_comment_path(comment.post_id, comment.id), method: :delete %>
-  <% end %>
-</div>
+      <div class="row">
+        <div class="col-9">
+          <h2>レシピの詳細</h2>
+          <%= link_to admin_customer_path(@customer.id) do %>
+          <%=image_tag @customer.get_profile_image(50,50) %>
+          <%=@customer.last_name %>
+          <%=@customer.first_name %>
+          <% end %>
+          <div class="row">
+            <div class="col-8">
+              <% if @post.images.attached? %>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <% @post.images.count.times do |index| %>
+                      <% if index==0 %>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<%=index%>" class="active"></li>
+                      <% else %>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<%=index%>"></li>
+                      <% end %>
+                    <% end %>
+                  </ol>
+                  <div class="carousel-inner">
+                     <% @post.images.each_with_index do |image,index|%>
+                        <% if index==0 %>
+                          <div class="carousel-item active">
+                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-cover" %>
+                          </div>
+                        <% else %>
+                          <div class="carousel-item">
+                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-cover" %>
+                          </div>
+                        <% end %>
+                     <% end %>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div>
+            <p><%=@post.title %></p>
+            <p>ジャンル:<%=@post.genre.name %></p>
+            <p><%= @post.nices.count %>いいね</p>
+            <p>作り方:<%=@post.article %></p>
+          </div>
 
+              <div>
+                <% @post.comments.each do |comment| %>
+                  <div class="media mt-4 border-bottom">
+                    <p><%= image_tag comment.customer.get_profile_image(30,30),class:"bd-placeholder-img mr-3" %></p>
+                    <div class="media-body">
+                      <p class="mt-0">
+                        <%= comment.customer.last_name %>
+                        <%= comment.customer.first_name %>
+                      </p>
+                      <%=comment.body %><br>
+                      <%= comment.created_at.strftime('%Y/%m/%d') %>
+                      <%= link_to "削除", admin_post_comment_path(comment.post_id, comment.id), method: :delete %>
+                    </div>
+                  </div>
+                <% end %>
+          </div>
+       </div>
+      <div class="col-3">
+         <%=render 'admin/sidebar', genres: @genres %>
+      </div>
+  </div>
+</div>

@@ -23,11 +23,16 @@ class Admin::CustomersController < ApplicationController
   def show
     @genres = Genre.all
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.order(created_at: :desc)
     if @customer.is_deleted == true
       @status = "退会"
     else
       @status = "有効"
+    end
+    @nice =params[:nice]
+    if @nice.present?
+      @posts = @customer.niced_posts.order(created_at: :desc)
+    else
+      @posts = @customer.posts.order(created_at: :desc)
     end
   end
 

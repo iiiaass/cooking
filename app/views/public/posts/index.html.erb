@@ -6,8 +6,7 @@
   </div>
 
   <div class="row">
-
-      <div class="col-9">
+    <div class="col-9">
         <h2>レシピの一覧</h2>
         <p>検索結果 <%= @post_count %>件</p>
         <div class="row">
@@ -24,12 +23,11 @@
                   <%= link_to post_path(post.id) do %>
                     <%=image_tag post.customer.get_profile_image(50, 50) %>
                     <p class="card-text">
-                    <%=post.customer.last_name %>
-                    <%=post.customer.first_name %>
+                      <%=post.customer.last_name %>
+                      <%=post.customer.first_name %>
+                    </p>
                   <% end %>
-                  </p>
                   <div class="card-text">
-                    <!--<p>ジャンル:<%#=post.genre.name %></p>-->
                     <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>
                     <p><%= link_to "#{post.nices.count} いいね", post_path(post.id) %></p>
                     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
@@ -38,18 +36,13 @@
               </div>
             </div>
           <% end %>
+          <%= paginate @posts %>
         </div>
-        <%= paginate @posts %>
-      </div>
-      <div class="col-3">
+        </div>
+    <div class="col-3">
       <%=render 'public/sidebar', genres: @genres %>
     </div>
   </div>
-
-
-
-
-
 </div>
 
 

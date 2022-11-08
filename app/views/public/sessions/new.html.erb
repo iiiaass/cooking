@@ -7,9 +7,7 @@
   <div class="row">
     <div class="col-5">
 
-      <h2>ログイン</h2>
-              <br>
-
+      <h2>ログイン</h2><br>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="form-group">
                   <%= f.label :email,"メールアドレス" %><br />
@@ -20,10 +18,10 @@
                    <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
               </div>
 
-          <div>
-              <%= f.submit "ログイン",class:"btn btn-outline-primary btn-block" %>
-          </div>
-          <% end %>
+              <div>
+                  <%= f.submit "ログイン",class:"btn btn-outline-primary btn-block" %>
+              </div>
+            <% end %>
           <br>
           <p>ゲストログイン(閲覧用)は
           <%= link_to 'こちらから', public_guest_sign_in_path, method: :post %>
