@@ -27,3 +27,30 @@
   margin-bottom:20px;
   border-bottom: thin black solid;
 }
+
+.card-view {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.notice {
+  background-color: yellow;
+  color: #white;
+  text-align: center;
+}
+
+.alert {
+  background-color: red;
+  color: #white;
+  text-align: center;
+}
+.post-title{
+  margin-top:30px;
+}
+.show-article{
+  border:yellow solid;
+  padding-left:20px;
+  padding-right:20px;
+}

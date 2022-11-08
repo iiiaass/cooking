@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
     @genres = Genre.all
     @customer = Customer.find(params[:id])
 
-    @nice =params[:nice]
+    @nice = params[:nice]
     if @nice.present?
       @posts = @customer.niced_posts.order(created_at: :desc)
     else

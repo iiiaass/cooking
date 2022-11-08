@@ -5,7 +5,6 @@
       </div>
     </div>
 
-<%#=render 'admin/sidebar', genres: @genres %>
   <div class="row">
     <div class="col-9">
       <h2>
@@ -16,10 +15,10 @@
         <%=@customer.last_name %>
         <%=@customer.first_name %>
       <p>会員ステータス:<%=@status %></p>
-         <%= link_to "フォロー一覧", customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
-         <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
+         <%= link_to "フォロー一覧", admin_customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
+         <%= link_to "フォロワー一覧",  admin_customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
       <p>メールアドレス:<%=@customer.email %></p>
-      <%= link_to "編集する",edit_admin_customer_path(@customer.id) %>
+      <%= link_to "編集する",edit_admin_customer_path(@customer.id),class:"btn btn-outline-primary float-right" %>
       <p>自己紹介<br>
       <%=@customer.introduction %></p>
 
@@ -44,7 +43,7 @@
                       <% end %>
                     <% end %>
                     <div class="card-body">
-                     <h5 class="card-title"><%=post.title %></h5>
+                     <h5 class="card-title card-view"><%=post.title %></h5>
                      <div class="card-text">
 
                        <p><%= post.created_at.strftime('%Y/%m/%d') %></p>

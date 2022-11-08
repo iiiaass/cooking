@@ -51,14 +51,15 @@
               <% end %>
             </div>
           </div>
-          <div>
-            <p><%=@post.title %></p>
+          <div class="show-article">
+            <h5 class="post-title"><%=@post.title %></h5>
             <p>ジャンル:<%=@post.genre.name %></p>
             <p><%= @post.nices.count %>いいね</p>
-            <p>作り方:<%=@post.article %></p>
+            <p style="white-space: pre-wrap; word-wrap: break-word;">作り方:<br><%=@post.article %></p>
           </div>
 
               <div>
+                <p>コメント件数：<%= @post.comments.count %></p>
                 <% @post.comments.each do |comment| %>
                   <div class="media mt-4 border-bottom">
                     <p><%= image_tag comment.customer.get_profile_image(30,30),class:"bd-placeholder-img mr-3" %></p>

@@ -5,6 +5,7 @@
     </div>
   </div>
 
+
   <div class="row">
     <div class="col-9">
         <h2>レシピの一覧</h2>
@@ -19,7 +20,7 @@
                   <% end %>
                 <% end %>
                 <div class="card-body">
-                  <h5 class="card-title"><%= post.title %></h5>
+                  <h5 class="card-title card-view"><%= post.title %></h5>
                   <%= link_to post_path(post.id) do %>
                     <%=image_tag post.customer.get_profile_image(50, 50) %>
                     <p class="card-text">

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
+  namespace :admin do
     get 'nices/create'
   end
   namespace :public do
@@ -25,7 +29,10 @@ Rails.application.routes.draw do
   end
 
    namespace :admin do
-    resources :customers,only:[:index,:show,:edit,:update,:destroy]
+    resources :customers,only:[:index,:show,:edit,:update,:destroy] do
+     get 'followings' => 'relationships#followings', as: 'followings'
+     get 'followers' => 'relationships#followers', as: 'followers'
+    end
     resources :genres,only:[:index,:edit,:create,:update,:destroy]
     resources :posts,only:[:index,:show,:update,:destroy] do
      resources :comments,only:[:create,:destroy]

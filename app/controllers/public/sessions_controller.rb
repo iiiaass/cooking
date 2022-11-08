@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  
+
   before_action :customer_state, only: [:create]
-  
+
   # before_action :configure_sign_in_params, only: [:create]
   def guest_sign_in
     customers =Customer.guest
@@ -38,6 +38,7 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
+
 
   protected
   def customer_state

@@ -1,0 +1,39 @@
+<% if customers.exists? %>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= image_tag customer.get_profile_image(50, 50) %>
+            </td>
+            <td>
+              <%= link_to admin_customer_path(customer.id) do %>
+              <%= customer.last_name %><%= customer.first_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_customer_followings_path(customer.id) do %>
+              フォロー数: <%= customer.followings.count %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_customer_followers_path(customer.id) do %>
+              フォロワー数: <%= customer.followers.count %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

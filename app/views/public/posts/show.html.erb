@@ -52,11 +52,8 @@
               </div>
             </div>
 
-        <div>
-          <p><%=@post.title %></p>
-          <p>ジャンル:<%=@post.genre.name %></p>
-          <p>作り方:<%=@post.article %></p>
-        </div>
+        <div class="show-article">
+          <h5 class="post-title"><%=@post.title %></h5>
 
           <% if current_customer.email != 'guests@example.com' %>
            <% if @post.niced_by?(current_customer) %>
@@ -73,6 +70,12 @@
               </p>
             <% end %>
           <% end %>
+
+          <p>ジャンル:<%=@post.genre.name %></p>
+          <p style="white-space: pre-wrap; word-wrap: break-word;">作り方:<br><%=@post.article %></p>
+        </div>
+
+
 
           <div>
            <p>コメント件数：<%= @post.comments.count %></p>
