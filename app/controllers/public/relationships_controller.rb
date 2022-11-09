@@ -15,12 +15,15 @@ class Public::RelationshipsController < ApplicationController
     @genres = Genre.all
     @customer = Customer.find(params[:customer_id])
     @customers = @customer.followings
+    @customers_count=@customers.count
+
   end
 
   def followers
     @genres = Genre.all
     @customer = Customer.find(params[:customer_id])
     @customers = @customer.followers
+    @customers_count=@customers.count
   end
 
 end

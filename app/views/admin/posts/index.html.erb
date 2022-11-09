@@ -23,12 +23,12 @@
                 <%= link_to admin_post_path(post.id) do %>
                   <%=image_tag post.customer.get_profile_image(50,50) %>
                   <p class="card-text">
+                    <%=post.customer.last_name %>
+                    <%=post.customer.first_name %><br>
+                <% end %>
                     <% if post.customer.is_deleted == true %>
                       退会したユーザー
                     <% end %>
-                    <%=post.customer.last_name %>
-                    <%=post.customer.first_name %>
-                <% end %>
                 </p>
                 <div class="card-text">
                   <p>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></p>

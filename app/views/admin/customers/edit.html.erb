@@ -1,32 +1,64 @@
-<%=render 'admin/header' %>
-<%=render 'admin/sidebar', genres: @genres %>
+<div class="container" >
+  <div class="row">
+    <div class="col-12">
+    <%=render 'admin/header' %>
+    </div>
+  </div>
 
-  <% if @customer.errors.any? %>
-    <%= @customer.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-    <h2>会員編集</h2>
-    <%=form_with model: @customer,url:admin_customer_path(@customer.id),method: :patch do |f| %>
-      <p>会員のプロフィール画像</p>
-      <%=f.file_field:profile_image %>
-      <p>姓</p>
-      <%=f.text_field:last_name %>
-      <p>名</p>
-      <%=f.text_field:first_name %>
-      <p>メールアドレス</p>
-      <%=f.text_field:email %>
-      <p>自己紹介文</p>
-      <%=f.text_area:introduction, size: "40x20" %>
-      <p>会員ステータス</p>
-      <%= f.radio_button :is_deleted, "false" %>
-      <%= f.label :is_deleted, "有効" %>
+<%#=render 'admin/sidebar', genres: @genres %>
+  <div class="row">
+    <div class="col-9">
+      <div class="row">
+        <div class="col-8">
+          <h2>会員編集</h2>
+            <% if @customer.errors.any? %>
+              <%= @customer.errors.count %>件のエラーが発生しました
+              <ul>
+                <% @customer.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+            <br>
 
-      <%= f.radio_button :is_deleted, "true" %>
-      <%= f.label :is_deleted, "退会" %>
-      <%=f.submit "変更を保存する" %>
-    <% end %>
+            <%=form_with model: @customer,url:admin_customer_path(@customer.id),method: :patch do |f| %>
+              <div class="form-group">
+                <p>会員のプロフィール画像</p>
+                <%=f.file_field:profile_image %>
+              </div>
+              <div class="form-group">
+                <p>姓</p>
+                <%=f.text_field:last_name,class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <p>名</p>
+                <%=f.text_field:first_name,class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <p>メールアドレス</p>
+                <%=f.text_field:email,class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <p>自己紹介文</p>
+                <%=f.text_area:introduction, size: "40x20",class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <p>会員ステータス</p>
+                <%= f.radio_button :is_deleted, "false" %>
+                <%= f.label :is_deleted, "有効" %>
 
+                <%= f.radio_button :is_deleted, "true" %>
+                <%= f.label :is_deleted, "退会" %>
+              </div>
+              <div>
+                <%=f.submit "変更を保存する",class:"btn btn-outline-primary btn-block" %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+     <%=render 'public/sidebar', genres: @genres %>
+    </div>
+  </div>
+</div>
