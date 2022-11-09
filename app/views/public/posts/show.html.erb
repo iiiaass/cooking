@@ -13,7 +13,7 @@
           <%=@customer.last_name %>
           <%=@customer.first_name %>
          <% end %>
-            <div class="row">
+            <div class="row mb-4">
               <div class="col-8">
                 <% if @post.images.attached? %>
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -24,9 +24,9 @@
                         <% else %>
                           <li data-target="#carouselExampleIndicators" data-slide-to="<%=index%>"></li>
                         <% end %>
-                    　<% end %>
+                      <% end %>
                     </ol>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner ">
                      <% @post.images.each_with_index do |image,index|%>
                         <% if index==0 %>
                           <div class="carousel-item active">
@@ -38,7 +38,7 @@
                           </div>
                         <% end %>
                      <% end %>
-                　   </div>
+                    </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="sr-only">Previous</span>
@@ -47,7 +47,7 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
-              　　  </div>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -104,7 +104,7 @@
                   <p class="mt-0">
                     <%= comment.customer.last_name %>
                     <%= comment.customer.first_name %>
-  　　　　      　　　　</p>
+                </p>
                     <%=comment.body %><br>
                     <%= comment.created_at.strftime('%Y/%m/%d') %>
                     <% if comment.customer == current_customer %>

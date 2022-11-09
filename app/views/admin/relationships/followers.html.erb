@@ -7,6 +7,14 @@
   <div class="row">
     <div class="col-9">
       <h2><%=@customer.last_name %><%=@customer.first_name %>さんのフォロワー</h2>
+      <div class="d-flex justify-content-between">
+        <h5><%=@customers_count %>人</h5>
+        <% if params[:filter] %>
+          <%= link_to "退会したユーザーを表示する",admin_customer_followers_path(@customer.id),class: "btn btn-outline-primary" %>
+        <% else %>
+          <%= link_to "退会したユーザーを非表示",admin_customer_followers_path(@customer.id,{filter: "only_active"}),class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
       <%=render 'admin/relationships/follow',customers: @customers %>
     </div>
     <div class="col-3">

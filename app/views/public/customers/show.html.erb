@@ -28,7 +28,7 @@
           <%= link_to "フォロワー一覧",  customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
         <% end %>
         <% if @customer==current_customer %>
-          <div class="text-right"><%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary " %></div>
+          <div><%= link_to "編集する",edit_customer_path(@customer.id),class:"btn btn-outline-primary " %></div>
           <p>メールアドレス:<%=@customer.email %></p>
         <% end %>
         <p>自己紹介<br>

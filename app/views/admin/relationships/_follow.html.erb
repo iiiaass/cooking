@@ -1,5 +1,4 @@
 <% if customers.exists? %>
-
     <table class="table table-striped">
       <thead>
         <tr>
@@ -10,7 +9,6 @@
         </tr>
       </thead>
       <tbody>
-        <h5><%=@customers_count %>人</h5>
         <% customers.each do |customer| %>
           <tr>
             <td>

@@ -14,7 +14,7 @@ class Public::RelationshipsController < ApplicationController
   def followings
     @genres = Genre.all
     @customer = Customer.find(params[:customer_id])
-    @customers = @customer.followings
+    @customers = @customer.followings.only_active
     @customers_count=@customers.count
 
   end
@@ -22,7 +22,7 @@ class Public::RelationshipsController < ApplicationController
   def followers
     @genres = Genre.all
     @customer = Customer.find(params[:customer_id])
-    @customers = @customer.followers
+    @customers = @customer.followers.only_active
     @customers_count=@customers.count
   end
 

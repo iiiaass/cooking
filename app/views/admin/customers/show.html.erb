@@ -14,15 +14,15 @@
         <%=image_tag @customer.get_profile_image(100,100),class:"img-thumbnail" %>
         <%=@customer.last_name %>
         <%=@customer.first_name %>
-      <p>会員ステータス:<%=@status %></p>
-         <%= link_to "フォロー一覧", admin_customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
-         <%= link_to "フォロワー一覧",  admin_customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
-      <p>メールアドレス:<%=@customer.email %></p>
-      <%= link_to "編集する",edit_admin_customer_path(@customer.id),class:"btn btn-outline-primary float-right" %>
-      <p>自己紹介<br>
-      <%=@customer.introduction %></p>
+        <%= link_to "フォロー一覧", admin_customer_followings_path(@customer.id),class:"btn btn-outline-primary float-right" %>
+        <%= link_to "フォロワー一覧",  admin_customer_followers_path(@customer.id),class:"btn btn-outline-primary float-right" %>
+        <div><%= link_to "編集する",edit_admin_customer_path(@customer.id),class:"btn btn-outline-primary" %></div>
+        <p>会員ステータス:<%=@status %></p>
+        <p>メールアドレス:<%=@customer.email %></p>
+        <p>自己紹介<br>
+        <%=@customer.introduction %></p>
 
-      <ul class="nav nav-tabs nav-fill mb-4">
+        <ul class="nav nav-tabs nav-fill mb-4">
           <li class="nav-item">
             <%= link_to "投稿したレシピ",admin_customer_path(@customer) ,class:"nav-link #{@nice.present? ? '' : 'active'}" %>
           </li>

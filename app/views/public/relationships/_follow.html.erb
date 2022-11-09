@@ -1,6 +1,6 @@
 
 <% if customers.exists? %>
-
+    <h5><%=@customers_count %>人</h5>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -11,9 +11,8 @@
         </tr>
       </thead>
       <tbody>
-        <h5><%=@customers_count %>人</h5>
+        
         <% customers.each do |customer| %>
-        <%# unless @customer.is_deleted==true %>
           <tr>
             <td>
               <%= image_tag customer.get_profile_image(50, 50) %>
@@ -34,7 +33,6 @@
               <% end %>
             </td>
           </tr>
-        <%# end %>
         <% end %>
       </tbody>
     </table>
