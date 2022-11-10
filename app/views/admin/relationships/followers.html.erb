@@ -1,11 +1,11 @@
 <div class="container" >
   <div class="row">
-    <div class="col-md-12">
-    <%=render 'admin/header' %>
+    <div class="col-12">
+    <%=render 'admin/header', genres: @genres %>
     </div>
   </div>
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <h2><%=@customer.last_name %><%=@customer.first_name %>さんのフォロワー</h2>
       <div class="d-flex justify-content-between">
         <h5><%=@customers_count %>人</h5>
@@ -17,7 +17,7 @@
       </div>
       <%=render 'admin/relationships/follow',customers: @customers %>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
       <%=render 'admin/sidebar', genres: @genres %>
    </div>
   </div>

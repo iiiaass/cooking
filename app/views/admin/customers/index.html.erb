@@ -1,13 +1,13 @@
 <div class="container" >
   <div class="row">
     <div class="col-12">
-    <%=render 'admin/header' %>
+    <%=render 'admin/header', genres: @genres %>
     </div>
   </div>
 
 <%#=render 'admin/sidebar', genres: @genres %>
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <h2>会員一覧</h2>
       <table class="table">
         <thead>
@@ -38,7 +38,7 @@
       </table>
       <% paginate @customers %>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
      <%=render 'public/sidebar', genres: @genres %>
     </div>
   </div>

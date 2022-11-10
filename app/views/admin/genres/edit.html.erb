@@ -1,13 +1,12 @@
 <div class="container" >
   <div class="row">
     <div class="col-12">
-    <%=render 'admin/header' %>
+    <%=render 'admin/header', genres: @genres %>
     </div>
   </div>
 
-      <%#=render 'admin/sidebar', genres: @genres %>
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
         <h2>ジャンル編集</h2>
         <% if @genre.errors.any? %>
           <%= @genre.errors.count %>件のエラーが発生しました
@@ -24,7 +23,7 @@
         <% end %>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
      <%=render 'admin/sidebar', genres: @genres %>
     </div>
   </div>
