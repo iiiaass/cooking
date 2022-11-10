@@ -1,14 +1,14 @@
 <div class="container" >
     <div class="row">
-        <div class="col-md-12">
-        <%=render 'public/header' %>
+        <div class="col-12">
+        <%=render 'public/header', genres: @genres  %>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-9">
+        <div class="col-md-9 col-sm-12">
           <div class="row">
-            <div class="col-8">
+            <div class="col-md-8 col-sm-12">
 
               <h2>レシピの投稿</h2>
                 <% if @post.errors.any? %>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
           <%=render 'public/sidebar', genres: @genres %>
         </div>
 

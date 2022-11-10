@@ -7,9 +7,9 @@
 
 <%#=render 'admin/sidebar', genres: @genres %>
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8 col-sm-12">
           <h2>会員編集</h2>
             <% if @customer.errors.any? %>
               <%= @customer.errors.count %>件のエラーが発生しました
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
      <%=render 'public/sidebar', genres: @genres %>
     </div>
   </div>

@@ -7,11 +7,11 @@
       </a>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light nav-header">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
           <ul class="navbar-nav mr-auto">
             <% if admin_signed_in? %>
             <li class="nav-item active">
@@ -45,5 +45,24 @@
 
       </div>
     </nav>
+    <div class="d-md-none d-sm-block">
+     <nav class="navbar navbar-expand-lg navbar-light nav-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        ジャンルから探す
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <table class="table">
+
+            <% genres.each do |genre| %>
+             <tr>
+               <td>
+                 <%= link_to genre.name, admin_posts_path(genre_id: genre.id), class:"btn btn-outline-secondary btn-block" %>
+               </td>
+            </tr>
+            <% end %>
+            </table>
+        </div>
+        </nav>
+      </div>
   </header>
 

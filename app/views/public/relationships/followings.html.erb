@@ -1,15 +1,15 @@
 <div class="container" >
   <div class="row">
-    <div class="col-md-12">
-    <%=render 'public/header' %>
+    <div class="col-12">
+    <%=render 'public/header', genres: @genres  %>
     </div>
   </div>
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <h2><%=@customer.last_name %><%=@customer.first_name %>さんのフォロー</h2>
       <%=render 'public/relationships/follow',customers: @customers %>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
       <%=render 'public/sidebar', genres: @genres %>
    </div>
   </div>

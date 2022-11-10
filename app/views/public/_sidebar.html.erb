@@ -1,14 +1,16 @@
-
+<div class="d-sm-none d-md-block">
 <table class="table">
- <tbody>
    <tr>
    <th>ジャンルから探す</th>
    </tr>
+   <% genres.each do |genre| %>
    <tr>
-     <% genres.each do |genre| %>
      <td>
        <%= link_to genre.name, posts_path(genre_id: genre.id), class:"btn btn-outline-secondary btn-block" %>
      </td>
   </tr>
   <% end %>
 </table>
+</div>
+
+
