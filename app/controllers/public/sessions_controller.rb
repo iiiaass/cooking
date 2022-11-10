@@ -39,6 +39,10 @@ class Public::SessionsController < Devise::SessionsController
     root_path
   end
 
+  # def new
+  #   @genres= Genre.all
+  # end
+
 
   protected
   def customer_state
