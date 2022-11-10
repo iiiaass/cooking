@@ -6,9 +6,9 @@ class Public::CustomersController < ApplicationController
 
     @nice = params[:nice]
     if @nice.present?
-      @posts = @customer.niced_posts.order(created_at: :desc)
+      @posts = @customer.niced_posts.page(params[:page]).order(created_at: :desc)
     else
-      @posts = @customer.posts.order(created_at: :desc)
+      @posts = @customer.posts.page(params[:page]).order(created_at: :desc)
     end
   end
 
