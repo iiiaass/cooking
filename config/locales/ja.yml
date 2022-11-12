@@ -6,6 +6,7 @@ ja:
     attributes:
       post:
         title: 'タイトル'
+        images: '画像'
         article: '作り方'
       customer:
         email: 'メールアドレス'

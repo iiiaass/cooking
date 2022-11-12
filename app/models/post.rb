@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   validate :images_limit
 
   validates :title, presence: true
+  validates :images,presence: true
   validates :article, presence: true
 
   def niced_by?(customer)
