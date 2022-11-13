@@ -26,15 +26,15 @@
                         <% end %>
                       <% end %>
                     </ol>
-                    <div class="carousel-inner ">
+                    <div class="carousel-inner img-background ">
                      <% @post.images.each_with_index do |image,index|%>
                         <% if index==0 %>
                           <div class="carousel-item active">
-                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-cover" %>
+                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-contain" %>
                           </div>
                         <% else %>
                           <div class="carousel-item">
-                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-cover" %>
+                          <%= image_tag image.variant(resize_to_limit: [500, 500]).processed,class:"img img-responsive w-100 img-contain" %>
                           </div>
                         <% end %>
                      <% end %>

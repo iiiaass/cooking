@@ -57,3 +57,14 @@
 .genre-table{
   margin-top:30px;
 }
+.img-background{
+  background-color:#f1efef;
+}
+.img-contain {
+  object-fit: contain;
+  height:500px;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: drop-shadow(2px 2px 3px #222);
+}
