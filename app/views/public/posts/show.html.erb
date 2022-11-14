@@ -72,13 +72,13 @@
           <% end %>
 
           <p>ジャンル:<%=@post.genre.name %></p>
-          <p style="white-space: pre-wrap; word-wrap: break-word;">作り方:<br><%=@post.article %></p>
+          <p style="white-space: pre-wrap; word-wrap: break-word;">~作り方~<br><%=@post.article %></p>
         </div>
 
 
 
           <div>
-           <p>コメント件数：<%= @post.comments.count %></p>
+           <p>コメント件数：<%= @comments.size %></p>
              <% if @comment.errors.any? %>
               <%= @comment.errors.count %>件のエラーが発生しました
               <ul>
@@ -97,7 +97,7 @@
             </div>
 
         <div>
-            <% @post.comments.each do |comment| %>
+            <% @comments.each do |comment| %>
              <div class="media mt-4 border-bottom">
                 <p><%= image_tag comment.customer.get_profile_image(30,30),class:"bd-placeholder-img mr-3" %></p>
                 <div class="media-body">
@@ -114,6 +114,7 @@
                 </div>
              </div>
             <% end %>
+           
 
 
         </div>

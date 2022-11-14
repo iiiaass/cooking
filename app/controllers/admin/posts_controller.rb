@@ -23,6 +23,8 @@ class Admin::PostsController < ApplicationController
    @genres = Genre.all
    @post = Post.find(params[:id])
    @customer = @post.customer
+   active_customer_ids = Customer.only_active.ids
+   @comments = @post.comments.where(customer_id: active_customer_ids)#モデル名.where(カラム名: 内容)
   end
 
   def destroy

@@ -28,18 +28,16 @@ class Public::PostsController < ApplicationController
    end
    @post_count=@posts.count
    @posts=@posts.page(params[:page]).order(created_at: :desc)
-   # @post_count = 0
-   # @posts.each do |post|
-   #  unless post.customer.is_deleted
-   #   @post_count += 1
-   #  end
-   # end
 
+   # active_customer_ids = Customer.only_active.ids
+   # @posts = Post.comments.where(customer_id: active_customer_ids)
   end
 
   def show
    @genres = Genre.all
    @post = Post.find(params[:id])
+   active_customer_ids = Customer.only_active.ids
+   @comments = @post.comments.where(customer_id: active_customer_ids)#モデル名.where(カラム名: 内容)
    @customer = @post.customer
    @comment = Comment.new
 
