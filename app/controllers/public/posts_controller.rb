@@ -29,8 +29,8 @@ class Public::PostsController < ApplicationController
    @post_count=@posts.count
    @posts=@posts.page(params[:page]).order(created_at: :desc)
 
-   # active_customer_ids = Customer.only_active.ids
-   # @posts = Post.comments.where(customer_id: active_customer_ids)
+   @active_customer_ids = Customer.only_active.ids
+   
   end
 
   def show

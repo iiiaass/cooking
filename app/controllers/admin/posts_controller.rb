@@ -11,12 +11,8 @@ class Admin::PostsController < ApplicationController
     end
     @post_count=@posts.count
     @posts=@posts.page(params[:page]).order(created_at: :desc)
-    # @post_count = 0
-    # @posts. each do |post|
-    #   unless post.customer.is_deleted
-    #     @post_count += 1
-    #   end
-    # end
+
+    @active_customer_ids = Customer.only_active.ids
   end
 
   def show
