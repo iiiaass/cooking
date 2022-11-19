@@ -5,4 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-   Admin.create(email: 'a@a',password: 'aaaaaa')
+  
+if Rails.env.production?
+   require './db/fixtures/production/seed_data.rb'
+else
+  require './db/fixtures/development/seed_data.rb'
+end
